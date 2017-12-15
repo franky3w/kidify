@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import KidForm from './KidForm';
-import { startAddKid } from '../actions/kids';
 
-export class KidAddPage extends React.Component {
+import KidForm from './KidForm';
+import KidsListSummary from './KidsListSummary';
+import { startAddKid } from '../actions/kidsData';
+
+export class KidTestPage extends React.Component {
  onSubmit = (kid) => {
    this.props.startAddKid(kid);
    this.props.history.push('/');
@@ -12,7 +14,7 @@ export class KidAddPage extends React.Component {
  onImport = () => {
   const kidsToImport = [
     { firstName: 'Barbie', lastName: 'Cool', parents: ['Tarzan', 'Tintin'], currentGroup: 'ABC', isActive: true},
-    { firstName: 'Intrus', lastName: 'Anonymus', parents: ['Non pertinent'], currentGroup: 'ABC', createdAt: -1000 },
+    { firstName: 'Intrus', lastName: 'Anonymus', parents: ['Non pertinent'], currentGroup: 'ABC', isActive: true, createdAt: -1000 },
     { firstName: 'Carolane', lastName:'Berg', parents: ['Guylaine'], currentGroup: 'CBA', isActive: true },
     { firstName: 'Amélie', lastName: 'Berg', parents: ['Francis'], currentGroup: 'ABC' },
     { firstName: 'Vicky', lastName: 'Kli', parents: ['Chantal'], currentGroup: 'ABC' },
@@ -29,13 +31,11 @@ render() {
      <div>
        <div className="page-header">
          <div className="content-container">
-           <h1 className="page-header__title">Nouveau</h1>
+           <h1 className="page-header__title">TEST PAGE</h1>
          </div>
        </div>
+       <KidsListSummary />
        <div className="content-container">
-         <KidForm
-           onSubmit={this.onSubmit}
-         />
          <button className="button button--secondary" onClick={this.onImport}>Importer</button>
        </div>
      </div>
@@ -47,4 +47,4 @@ const mapDispatchToProps = (dispatch) => ({
   startAddKid: (kid) => dispatch(startAddKid(kid))
 });
 
-export default connect(undefined, mapDispatchToProps)(KidAddPage);
+export default connect(undefined, mapDispatchToProps)(KidTestPage);

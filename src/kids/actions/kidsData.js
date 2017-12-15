@@ -1,5 +1,5 @@
 // import uuid from 'uuid';
-import database from '../firebase/firebase';
+import database from '../../firebase/firebase';
 
 // ADD_KID
 const addKid = (kid) => ({
@@ -16,11 +16,11 @@ export const startAddKid = (kidData = {}) => {
       parents = [],
       createdAt = 0,
       currentGroup = '',
-      isActive = true
+      isActive = false
       } = kidData;
     const kid = { firstName, lastName, parents, createdAt, currentGroup, isActive };
 
-    return database.ref(`users/${uid}/kids`).push(kid).then((ref) => {
+    return database.ref(`DEVKidify/kids`).push(kid).then((ref) => {
       dispatch(addKid({
         id: ref.key,
         ...kid
@@ -39,7 +39,7 @@ const removeKid = ({ id } = {}) => ({
 export const startRemoveKid = ({ id } = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/kids/${id}`).remove().then(() => {
+    return database.ref(`DEVKidify/kids/${id}`).remove().then(() => {
       dispatch(removeKid({ id }));
     });
   };
@@ -56,7 +56,7 @@ export const editKid = (id, updates) => ({
 export const startEditKid = (id, updates) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/kids/${id}`).update(updates).then(() => {
+    return database.ref(`DEVKidify/kids/${id}`).update(updates).then(() => {
       dispatch(editKid(id, updates));
     });
   };
@@ -72,7 +72,7 @@ const setKids = (kids) => ({
 export const startSetKids = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/kids`).once('value').then((snapshot) => {
+    return database.ref(`DEVKidify/kids`).once('value').then((snapshot) => {
       const kids = [];
 
       snapshot.forEach((childSnapshot) => {

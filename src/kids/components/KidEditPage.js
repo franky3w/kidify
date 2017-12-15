@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import KidForm from './KidForm';
-import { startEditKid, startRemoveKid } from '../actions/kids';
+import { startEditKid, startRemoveKid } from '../actions/kidsData';
 
 export class KidEditPage extends React.Component {
   onSubmit = (kid) => {

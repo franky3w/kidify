@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import numeral from 'numeral';
 import {selectedKids, selectAllKids} from '../selectors/kids';
-import { startAddKid } from '../actions/kids';
+import { startAddKid } from '../actions/kidsData';
 
 export const KidsListSummary = ({ kidsSelectedCount, kidsTotalCount }) => {
   const kidsWord = kidsSelectedCount === 1 ? 'enfant' : 'enfants';

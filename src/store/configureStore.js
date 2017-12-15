@@ -3,8 +3,8 @@ import thunk from 'redux-thunk';
 import authReducer from '../reducers/auth';
 import expensesReducer from '../reducers/expenses';
 import filtersReducer from '../reducers/filters';
-import kidsFiltersReducer from '../reducers/kidsFilters';
-import kidsReducer from '../reducers/kids';
+import kidsFiltersReducer from '../kids/reducers/kidsFilters';
+import kidsReducer from '../kids/reducers/kidsData';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
